@@ -10,6 +10,33 @@ const STATIC_GALLERY = [
     { _id: 'static-4', image: '/assets/download (8).jpeg', category: 'community', caption: 'Community action' }
 ]
 
+const STATIC_PROJECTS = [
+    {
+        _id: 'static-project-1',
+        title: 'Education for All',
+        description: 'Supporting rural education through learning materials, tuition support, and digital access.',
+        image: '/assets/download (3).jpeg',
+        category: 'education',
+        status: 'Ongoing'
+    },
+    {
+        _id: 'static-project-2',
+        title: 'Clean Water Initiative',
+        description: 'Installing water filters and improving access to safe drinking water in underserved communities.',
+        image: '/assets/download (4).jpeg',
+        category: 'health',
+        status: 'Ongoing'
+    },
+    {
+        _id: 'static-project-3',
+        title: 'Women Empowerment',
+        description: 'Skill training, microloans, and livelihood support for women-led self-help groups.',
+        image: '/assets/download (5).jpeg',
+        category: 'community',
+        status: 'Planned'
+    }
+]
+
 export const DataProvider = ({ children }) => {
     const [projects, setProjects] = useState([])
     const [galleryUploads, setGalleryUploads] = useState([])
@@ -21,6 +48,8 @@ export const DataProvider = ({ children }) => {
         try {
             const res = await api.get('/projects')
             setProjects(res.data)
+        } catch {
+            setProjects(STATIC_PROJECTS)
         } finally {
             setLoadingProjects(false)
         }
